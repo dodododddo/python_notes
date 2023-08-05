@@ -1,24 +1,32 @@
 # Lesson 4: 复合数据类型
 
 为了表示数据间的关系且方便我们批量存储数据，python引入了内置的容器类型
-<br>
+`<br>`
+
 ## 列表: list
+
 * 列表是实际程序中最常用也是最灵活的数据结构，它强调的是数据之间的序关系，支持任意位置的插入、删除、修改
 * 同个列表里可以存储不同的数据类型，但我们通常不建议这么做
 * 在命名一个列表类型的变量时，我们通常不使用xxx_list的方式，而是直接使用xxxs
-<br>
+  `<br>`
+
 #### 常用方法
+
 * 插入
+
 ```
 students = ['Salas', 'Jack', 'Mary']
 students.append('Jerry')             # 从尾部插入是最常用的插入方式
 students.insert(1, 'Bob')            # 插入到指定下标的前面
 ```
+
 * 删除
+
 ```
 students.pop()                       # 从尾部删除也是较为常见的方法
 students.pop(1)                      # 也可以用pop(i)来从删除指定位置的元素
 ```
+
 <br>
 #### 切片
 在字符串部分我们也聊过切片， 列表切片的使用方法与字符串完全相同
@@ -39,6 +47,7 @@ print(list1)
 ```
 
 列表中的元素也可以是列表，你可以用多个[]来访问嵌套列表中的元素。根据列表切片的复制原理，推测以下代码的运行结果
+
 ```
 list1 = [[1, 2, 3], [4, 5, 6]]
 list2 = list1[:]
@@ -54,6 +63,7 @@ print(list1)
 由此可见，列表的切片仅仅复制了列表中每个元素的地址，也就是说**切片中的子列表与原列表子列表仍然是相同的元素(包括值和地址)**，故而直接替换子列表不会对原列表产生影响，而改变子列表中的元素会对子列表产生影响。
 
 如果你确实需要获得一个多重列表或者其他复杂对象的一个拷贝，又不希望对这个拷贝的任何修改影响到原对象，你可以使用**deepcopy**，这一方法会保证你获得一个与原对象完全一致且绝对断绝关系的一个拷贝
+
 ```
 from copy import deepcopy   # 从copy库中引用了deepcopy函数
 
@@ -63,11 +73,12 @@ list2[-1][0] = 5
 print(list2)
 print(list1)
 ```
+
 <br>
 #### 列表与for循环
 列表常常和for循环配合使用，以下是两种常见的情况
 ```
-for students in students:
+for student in students:
     some code    # 对每个学生进行处理
 ```
 ```
@@ -88,45 +99,60 @@ res = []
 for i in range(1, 11):
     temp = i ** 3
     res.append(temp)
+
 ```
 
 ```
+
 ''' good '''
 
 res = [i ** 3 for i in range(1, 11)]
+
 ```
+
 ```
+
 ''' bad '''
 
 res = []
 for student in students:
     res.append(f(student))
+
 ```
+
 ```
+
 ''' good '''
 
 res = [f(student) for student in students]
+
 ```
 
 再举一个比较实用的例子
 ```
+
 ''' 生成要爬取的url '''
 
 urls = [f'https://www.cnblogs.com/#p{i}' for i in range(2, 51)]
 urls.insert(0, 'https://www.cnblogs.com/')
+
 ```
 <br>
 ## 元组: tuple
 元组与列表相似， 也是一种有序的结构，同样可以存储相同或不同类型的元素(实际存储的是地址)，同样支持for循环，同样支持索引和切片。元组与列表的最大区别在于，元组是不可变的结构，一经生成，不允许对直接存储的元素进行任何修改。
 ```
+
 t = (1, 2, 3)
 print(t[0],t[1], t[2])
 t[0] = 5          # 不允许的操作
+
 ```
 但是，对不直接储存的元素，元组的不可变性对其没有约束力
 ```
+
 t = ([1, 2, 3], [4, 5, 6])
 t[0][0] = 8
+
 ```
 
 #### 补充：可变对象与不可变对象
@@ -139,16 +165,19 @@ t[0][0] = 8
 <br>
 #### 特殊情况: 单元素元组
 ```
+
 a = ([1, 2])
 print(a)         # 此时的a仍是列表而不是元组，因为()被理解为运算优先级
 
 a = ([1, 2],)         # 用逗号标注这是一个元组
 print(a)
+
 ```
 <br>
 #### 解析列表/元组
 有时候，我们要从列表/元组中把内部元素还原出来，我们可以使用索引访问，也可以直接用以下方式
 ```
+
 t = [1, 2]
 a, b = t
 print(a, b)
@@ -156,6 +185,7 @@ print(a, b)
 l = (1, 2, 3, 4)
 c, *d, e = l       # *d的含义是d将打包接受到的参数并以**列表**形式存储()
 print(c, d, e)
+
 ```
 <br>
 ## 集合: set
@@ -164,14 +194,19 @@ print(c, d, e)
 #### 构造集合
 最常见的方式是用列表来构造集合
 ```
+
 empty = set()         # 构造一个空集
 s1 = set([2, 3, 1, 5])   # 用列表构造集合
 s2 = set([2, 3, 3, 3])   # 集合不会存储重复元素，所以也可以利用这一特性来去重
+
 ```
+
 ```
-''' 列表去重 ''' 
+
+''' 列表去重 '''
 l = [1, 2, 2]
-l = list(set(list))  # 先转为集合去重，再转回列表
+l = list(set(l))  # 先转为集合去重，再转回列表
+
 ```
 <br>
 #### 集合的基本操作
@@ -179,33 +214,41 @@ l = list(set(list))  # 先转为集合去重，再转回列表
 
 * 添加元素
 ```
+
 s = set()
 s.add('hello')
 s.add('name')
+
 ```
 * 判断元素是否在集合中
 ```
+
 if 'name' in s:
     print('exist')
 if 'mark' in s:
     print('exist')
 else:
     print('none')
+
 ```
 
 * 删除元素: 删除前务必进行判断！
 ```
+
 s.remove('hello')    # 删除已有元素
 s.remove('mark')     # 删除不存在元素将报错！所以删除前务必进行判断！
+
 ```
 * 交、并、差、补
 ```
+
 s1 = set([1, 2])
 s2 = set([2, 3])
 s_intersection = s1 & s2      # 取交集
 s_union = s1 | s2             # 取并集
 s_diffirence = s1 - s2        # 取减集
 s_complement = s1 ^ s2        # 取补集
+
 ```
 <br>
 
@@ -219,6 +262,7 @@ s_complement = s1 ^ s2        # 取补集
 
 key不要求一定是字符串(尽管通常是)，只要是不可变对象即可
 ```
+
 ''' 基本格式: {key1:value1, key2:value2...} '''
 
 d = {'John': 99, 'Cindy': 88}
@@ -229,21 +273,25 @@ d = {'John': 99, 'Cindy': 88}
 
 与列表的索引取值类似，只是[ ]内从下标变为了key
 ```
+
 ''' dict[key] '''
 
 score1 = d['John']
 d['John'] += 1
 score2 = d['John']
 print(score1, score2)
+
 ```
 查询有失败的风险，会抛出一个KeyError并退出代码，这在实际编程中是很致命的，所以我们常用更安全的get方法来替代直接查询
 ```
+
 ''' dict.get(key, error_value=None) '''
 
 score3 = d['jack']    # keyError
 score3 = d.get('jack')  # 找不到该key对应的值，返回None
 score4 = d.get('jack', -1)  # 也可以手动设定查询失败的返回值，方便外部统一处理
 score5 = d.get('Cindy')     # 查询成功时与直接查询的结果没有区别
+
 ```
 <br>
 #### for循环与dict
@@ -251,13 +299,17 @@ score5 = d.get('Cindy')     # 查询成功时与直接查询的结果没有区�
 直接对字典进行遍历时，默认对字典的key进行遍历
 如果需要对字典的value进行遍历
 ```
+
 for value in d.values():
     print(value)
+
 ```
 如果需要同时遍历字典的key与value
 ```
+
 for key, value in d.items():
     print(key, value)
+
 ```
 <br>
 #### 字典的适用场景
@@ -265,5 +317,9 @@ for key, value in d.items():
 * 一方面，字典可以像列表一样存储多个不同的复杂元素，取这些元素的某个特征作为key来建立字典。如用学号作为key(满足唯一性)，把存储学生所有信息的对象作为value
 * 另一方面，也可以用字典来表示单个元素，其中以不同的属性名作为key, 属性值作为对应的value
 ```
+
 student = {'id':2201150506, 'name': Lau, 'score': 80}
+
+```
+
 ```
