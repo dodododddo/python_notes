@@ -12,14 +12,17 @@ def agg(l:list, mode = 'median'):
         return None
     if mode == 'median':
         l = sorted(l)
-        return l[len(l) // 2]
+        length = len(l)
+        if length % 2:
+            return l[length // 2]
+        else:
+            return (l[length // 2] + l[length // 2 + 1]) / 2
     if mode == 'mean':
         return reduce(lambda x, y: x + y, l) / len(l)
     if mode == 'max':
         return max(l)
     if mode == 'majority':
         return max(l, key=l.count)
-    
     
 
 if __name__ == '__main__':
