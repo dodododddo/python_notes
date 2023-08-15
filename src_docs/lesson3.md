@@ -101,14 +101,14 @@ print(sum_odd)
 ```
 
 ```
-str = 'hello'
-for letter in str:        # 遍历str的所有子元素
+s = 'hello'
+for letter in s:        # 遍历str的所有子元素
     print(letter)
 ```
 
 ```
-str = 'hello'
-for idx, letter in enumerate(str):   # 同时遍历str的所有下标与子元素
+s = 'hello'
+for idx, letter in enumerate(s):   # 同时遍历str的所有下标与子元素
     print(idx,':‘，letter)
 ```
 
@@ -133,8 +133,8 @@ print(sum)
 有时候我们不希望程序傻傻的完成整个循环，而希望程序能在满足一定条件后直接进入下一次循环/跳出循环
 
 ```
-str = 'hello, world!'
-for letter in str:
+s = 'hello, world!'
+for letter in s:
     if letter == ',' or letter ==  ' ':
         continue         # 不做处理，直接进入下一个循环
     if letter == l:
