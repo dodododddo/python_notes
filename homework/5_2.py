@@ -8,9 +8,10 @@ def outstand(*args)->(float, list):
     if not len(args):
         logging.error('参数数量小于1')
         return None, None
+    
     avg = reduce(lambda x, y: x + y, args) / len(args)
-    res = list(filter(lambda x: x > avg, args))
-    # res = [arg for arg in args if arg > avg]
+    # res = list(filter(lambda x: x > avg, args))
+    res = [arg for arg in args if arg > avg]
     return avg, res
 
 
