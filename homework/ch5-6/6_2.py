@@ -41,7 +41,7 @@ def example_function():
     time.sleep(2)
     print("函数执行中")
 
-@conditional_execution(condition=True)
+@conditional_execution(condition=False)
 def conditional_function():
     print("函数执行了")
 

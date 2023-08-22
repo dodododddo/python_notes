@@ -8,5 +8,5 @@ def infinite_fibonacci_generator():
 fibonacci_gen = infinite_fibonacci_generator()
 
 # 生成并输出斐波那契数列的前 10 个数
-for i in range(10):
+for i in range(100):
     print(next(fibonacci_gen))
